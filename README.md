@@ -92,4 +92,33 @@ Ngô Thị Hoa
 ## Môn học
 
 Lập trình ứng dụng với Python
-Trường Đại học Công nghệ Đông Á
+
+
+## Giao diện chương trình
+
+### Đăng nhập
+
+![Đăng nhập](images/login.png)
+
+### Dashboard
+
+![Dashboard](images/dashboard.png)
+
+### Bán hàng
+
+![Bán hàng](images/sales.png)
+
+### Quản lý kho và IMEI
+
+![Kho hàng](images/inventory.png)
+
+### Bảo hành
+
+![Bảo hành](images/warranty.png)
+
+### Báo cáo thống kê
+
+![Báo cáo](images/report.png)
+
+
+
