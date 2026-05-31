@@ -1,0 +1,903 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>ProductStockPage</class>
+ <widget class="QWidget" name="ProductStockPage">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1050</width>
+    <height>560</height>
+   </rect>
+  </property>
+  <property name="styleSheet">
+   <string><![CDATA[
+QWidget#ProductStockPage {
+    background-color: #f8fafc;
+}
+
+QFrame#formPanel,
+QFrame#tablePanel,
+QFrame#imeiPanel,
+QFrame#warningPanel {
+    background-color: white;
+    border: 1px solid #dbeafe;
+    border-radius: 16px;
+}
+
+QLabel.formLabel {
+    color: #334155;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+QLineEdit,
+QComboBox,
+QDoubleSpinBox,
+QTextEdit {
+    background-color: #f8fafc;
+    border: 1px solid #cbd5e1;
+    border-radius: 12px;
+    padding: 6px 10px;
+    color: #0f172a;
+    font-size: 13px;
+}
+
+QLineEdit:focus,
+QComboBox:focus,
+QDoubleSpinBox:focus,
+QTextEdit:focus {
+    border: 2px solid #2563eb;
+    background-color: white;
+}
+
+QComboBox {
+    border-radius: 12px;
+    min-height: 34px;
+}
+
+QComboBox::drop-down {
+    border: none;
+    width: 28px;
+    border-top-right-radius: 12px;
+    border-bottom-right-radius: 12px;
+}
+
+QComboBox QAbstractItemView {
+    background-color: white;
+    color: #0f172a;
+    selection-background-color: #dbeafe;
+    selection-color: #0f172a;
+    border: 1px solid #93c5fd;
+    border-radius: 10px;
+    padding: 6px;
+    font-size: 13px;
+}
+
+QPushButton {
+    border: none;
+    border-radius: 11px;
+    padding: 7px;
+    font-size: 13px;
+    font-weight: bold;
+    min-height: 24px;
+}
+
+QPushButton#btnAdd {
+    background-color: #2563eb;
+    color: white;
+}
+
+QPushButton#btnUpdate {
+    background-color: #16a34a;
+    color: white;
+}
+
+QPushButton#btnDelete,
+QPushButton#btnDeleteImei {
+    background-color: #dc2626;
+    color: white;
+}
+
+QPushButton#btnShowVariants {
+    background-color: #dbeafe;
+    color: #1e3a8a;
+    border: 1px solid #bfdbfe;
+    border-radius: 14px;
+}
+
+QPushButton#btnMarkImeiSold {
+    background-color: #f59e0b;
+    color: white;
+}
+
+QPushButton#btnRefresh {
+    background-color: #0f172a;
+    color: white;
+}
+
+QPushButton#btnClear {
+    background-color: #e2e8f0;
+    color: #0f172a;
+}
+
+QTableWidget {
+    background-color: white;
+    border: 1px solid #dbeafe;
+    border-radius: 12px;
+    gridline-color: #e2e8f0;
+    color: #0f172a;
+    font-size: 12px;
+}
+
+QTableWidget::item {
+    padding: 5px;
+}
+
+QTableWidget::item:selected {
+    background-color: #dbeafe;
+    color: #0f172a;
+}
+
+QHeaderView::section {
+    background-color: #1e3a8a;
+    color: white;
+    padding: 6px;
+    border: none;
+    font-weight: bold;
+}
+
+QListWidget {
+    background-color: #fff7ed;
+    border: 1px solid #fed7aa;
+    border-radius: 10px;
+    padding: 5px;
+    color: #dc2626;
+    font-size: 12px;
+}
+   ]]></string>
+  </property>
+
+  <layout class="QHBoxLayout" name="contentLayout">
+   <property name="leftMargin">
+    <number>14</number>
+   </property>
+   <property name="topMargin">
+    <number>10</number>
+   </property>
+   <property name="rightMargin">
+    <number>14</number>
+   </property>
+   <property name="bottomMargin">
+    <number>10</number>
+   </property>
+   <property name="spacing">
+    <number>12</number>
+   </property>
+
+   <item>
+    <widget class="QFrame" name="formPanel">
+     <property name="minimumSize">
+      <size>
+       <width>350</width>
+       <height>0</height>
+      </size>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>380</width>
+       <height>16777215</height>
+      </size>
+     </property>
+
+     <layout class="QVBoxLayout" name="formLayout">
+      <property name="leftMargin">
+       <number>12</number>
+      </property>
+      <property name="topMargin">
+       <number>10</number>
+      </property>
+      <property name="rightMargin">
+       <number>12</number>
+      </property>
+      <property name="bottomMargin">
+       <number>10</number>
+      </property>
+      <property name="spacing">
+       <number>4</number>
+      </property>
+
+      <item>
+       <widget class="QLabel" name="lblFormTitle">
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>24</height>
+         </size>
+        </property>
+        <property name="text">
+         <string>📦 Thêm biến thể kèm IMEI</string>
+        </property>
+        <property name="styleSheet">
+         <string>color: #1e3a8a; font-size: 16px; font-weight: bold;</string>
+        </property>
+       </widget>
+      </item>
+
+      <item>
+       <widget class="QLabel" name="lblName">
+        <property name="text">
+         <string>Tên sản phẩm</string>
+        </property>
+        <property name="class" stdset="0">
+         <string>formLabel</string>
+        </property>
+       </widget>
+      </item>
+
+      <item>
+       <widget class="QComboBox" name="cboProductName">
+        <property name="editable">
+         <bool>true</bool>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>36</height>
+         </size>
+        </property>
+       </widget>
+      </item>
+
+      <item>
+       <widget class="QLabel" name="lblBrand">
+        <property name="text">
+         <string>Hãng</string>
+        </property>
+        <property name="class" stdset="0">
+         <string>formLabel</string>
+        </property>
+       </widget>
+      </item>
+
+      <item>
+       <widget class="QLineEdit" name="txtBrand">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>36</height>
+         </size>
+        </property>
+        <property name="placeholderText">
+         <string>Apple, Samsung, Xiaomi...</string>
+        </property>
+       </widget>
+      </item>
+
+      <item>
+       <layout class="QHBoxLayout" name="variantTitleLayout">
+        <property name="spacing">
+         <number>8</number>
+        </property>
+        <item>
+         <widget class="QLabel" name="lblStorage">
+          <property name="text">
+           <string>Dung lượng</string>
+          </property>
+          <property name="class" stdset="0">
+           <string>formLabel</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="lblColor">
+          <property name="text">
+           <string>Màu sắc</string>
+          </property>
+          <property name="class" stdset="0">
+           <string>formLabel</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+
+      <item>
+       <layout class="QHBoxLayout" name="variantLayout">
+        <property name="spacing">
+         <number>8</number>
+        </property>
+        <item>
+         <widget class="QComboBox" name="cboStorage">
+          <property name="editable">
+           <bool>true</bool>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>36</height>
+           </size>
+          </property>
+          <item>
+           <property name="text">
+            <string>64GB</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>128GB</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>256GB</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>512GB</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>1TB</string>
+           </property>
+          </item>
+         </widget>
+        </item>
+        <item>
+         <widget class="QComboBox" name="cboColor">
+          <property name="editable">
+           <bool>true</bool>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>36</height>
+           </size>
+          </property>
+          <item>
+           <property name="text">
+            <string>Đen</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Trắng</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Xanh</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Vàng</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Hồng</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Titan</string>
+           </property>
+          </item>
+         </widget>
+        </item>
+       </layout>
+      </item>
+
+      <item>
+       <layout class="QHBoxLayout" name="priceTitleLayout">
+        <property name="spacing">
+         <number>8</number>
+        </property>
+        <item>
+         <widget class="QLabel" name="lblPrice">
+          <property name="text">
+           <string>Giá bán</string>
+          </property>
+          <property name="class" stdset="0">
+           <string>formLabel</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="lblImportPrice">
+          <property name="text">
+           <string>Giá nhập</string>
+          </property>
+          <property name="class" stdset="0">
+           <string>formLabel</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+
+      <item>
+       <layout class="QHBoxLayout" name="priceLayout">
+        <property name="spacing">
+         <number>8</number>
+        </property>
+        <item>
+         <widget class="QDoubleSpinBox" name="spinPrice">
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>36</height>
+           </size>
+          </property>
+          <property name="maximum">
+           <double>999999999.000000000000000</double>
+          </property>
+          <property name="singleStep">
+           <double>100000.000000000000000</double>
+          </property>
+          <property name="value">
+           <double>10000000.000000000000000</double>
+          </property>
+          <property name="suffix">
+           <string> đ</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QDoubleSpinBox" name="spinImportPrice">
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>36</height>
+           </size>
+          </property>
+          <property name="maximum">
+           <double>999999999.000000000000000</double>
+          </property>
+          <property name="singleStep">
+           <double>100000.000000000000000</double>
+          </property>
+          <property name="suffix">
+           <string> đ</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+
+      <item>
+       <widget class="QLabel" name="lblDescription">
+        <property name="text">
+         <string>Mô tả</string>
+        </property>
+        <property name="class" stdset="0">
+         <string>formLabel</string>
+        </property>
+       </widget>
+      </item>
+
+      <item>
+       <widget class="QLineEdit" name="txtDescription">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>36</height>
+         </size>
+        </property>
+        <property name="placeholderText">
+         <string>Mô tả ngắn</string>
+        </property>
+       </widget>
+      </item>
+
+      <item>
+       <widget class="QLabel" name="lblBulkImei">
+        <property name="text">
+         <string>IMEI nhập kho</string>
+        </property>
+        <property name="class" stdset="0">
+         <string>formLabel</string>
+        </property>
+       </widget>
+      </item>
+
+      <item>
+       <widget class="QTextEdit" name="txtBulkImei">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>96</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>120</height>
+         </size>
+        </property>
+        <property name="placeholderText">
+         <string>Dán IMEI vào đây, mỗi dòng 1 IMEI. Stock sẽ tự tính theo số IMEI.</string>
+        </property>
+       </widget>
+      </item>
+
+      <item>
+       <widget class="QPushButton" name="btnAdd">
+        <property name="text">
+         <string>➕ Thêm biến thể + IMEI</string>
+        </property>
+       </widget>
+      </item>
+
+      <item>
+       <widget class="QPushButton" name="btnUpdate">
+        <property name="text">
+         <string>💾 Cập nhật thông tin biến thể</string>
+        </property>
+       </widget>
+      </item>
+
+      <item>
+       <widget class="QPushButton" name="btnDelete">
+        <property name="text">
+         <string>🗑 Xóa biến thể</string>
+        </property>
+       </widget>
+      </item>
+
+      <item>
+       <layout class="QHBoxLayout" name="bottomButtonLayout">
+        <property name="spacing">
+         <number>8</number>
+        </property>
+        <item>
+         <widget class="QPushButton" name="btnClear">
+          <property name="text">
+           <string>🧹 Xóa form</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="btnRefresh">
+          <property name="text">
+           <string>🔄 Làm mới</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+
+     </layout>
+    </widget>
+   </item>
+
+   <item>
+    <layout class="QVBoxLayout" name="rightLayout">
+     <property name="spacing">
+      <number>10</number>
+     </property>
+
+     <item>
+      <widget class="QFrame" name="tablePanel">
+       <layout class="QVBoxLayout" name="tableLayout">
+        <property name="leftMargin">
+         <number>12</number>
+        </property>
+        <property name="topMargin">
+         <number>10</number>
+        </property>
+        <property name="rightMargin">
+         <number>12</number>
+        </property>
+        <property name="bottomMargin">
+         <number>10</number>
+        </property>
+        <property name="spacing">
+         <number>8</number>
+        </property>
+
+        <item>
+         <layout class="QHBoxLayout" name="filterLayout">
+          <property name="spacing">
+           <number>8</number>
+          </property>
+          <item>
+           <widget class="QLineEdit" name="searchBox">
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>36</height>
+             </size>
+            </property>
+            <property name="placeholderText">
+             <string>🔍 Tìm sản phẩm, hãng, màu, dung lượng, IMEI...</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QComboBox" name="cboFilterStock">
+            <property name="minimumSize">
+             <size>
+              <width>145</width>
+              <height>36</height>
+             </size>
+            </property>
+            <item>
+             <property name="text">
+              <string>Tất cả tồn kho</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Sắp hết hàng</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Còn hàng</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Hết hàng</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+         </layout>
+        </item>
+
+        <item>
+         <widget class="QTableWidget" name="tableProducts">
+          <property name="columnCount">
+           <number>8</number>
+          </property>
+          <column>
+           <property name="text">
+            <string>ID</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>Tên sản phẩm</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>Hãng</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>Dung lượng</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>Màu</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>Giá bán</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>Tồn IMEI</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>Mô tả</string>
+           </property>
+          </column>
+         </widget>
+        </item>
+
+        <item>
+         <widget class="QPushButton" name="btnShowVariants">
+          <property name="maximumSize">
+           <size>
+            <width>16777215</width>
+            <height>34</height>
+           </size>
+          </property>
+          <property name="text">
+           <string>👁 Hiển thị / làm mới danh sách biến thể</string>
+          </property>
+         </widget>
+        </item>
+
+       </layout>
+      </widget>
+     </item>
+
+     <item>
+      <widget class="QFrame" name="imeiPanel">
+       <property name="maximumSize">
+        <size>
+         <width>16777215</width>
+         <height>150</height>
+        </size>
+       </property>
+       <layout class="QVBoxLayout" name="imeiLayout">
+        <property name="leftMargin">
+         <number>12</number>
+        </property>
+        <property name="topMargin">
+         <number>8</number>
+        </property>
+        <property name="rightMargin">
+         <number>12</number>
+        </property>
+        <property name="bottomMargin">
+         <number>8</number>
+        </property>
+        <property name="spacing">
+         <number>6</number>
+        </property>
+
+        <item>
+         <layout class="QHBoxLayout" name="imeiActionLayout">
+          <property name="spacing">
+           <number>8</number>
+          </property>
+          <item>
+           <widget class="QLabel" name="lblImeiTitle">
+            <property name="text">
+             <string>📱 IMEI của biến thể đang chọn</string>
+            </property>
+            <property name="styleSheet">
+             <string>color: #1e3a8a; font-size: 15px; font-weight: bold;</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <spacer name="imeiActionSpacer">
+            <property name="orientation">
+             <enum>Qt::Orientation::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item>
+           <widget class="QPushButton" name="btnMarkImeiSold">
+            <property name="maximumSize">
+             <size>
+              <width>100</width>
+              <height>32</height>
+             </size>
+            </property>
+            <property name="text">
+             <string>🏷 Đã bán</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="btnDeleteImei">
+            <property name="maximumSize">
+             <size>
+              <width>85</width>
+              <height>32</height>
+             </size>
+            </property>
+            <property name="text">
+             <string>🗑 Xóa</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+
+        <item>
+         <widget class="QTableWidget" name="tableImeis">
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>92</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>16777215</width>
+            <height>92</height>
+           </size>
+          </property>
+          <property name="columnCount">
+           <number>5</number>
+          </property>
+          <column>
+           <property name="text">
+            <string>ID</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>IMEI</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>Trạng thái</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>Giá nhập</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>Ngày nhập</string>
+           </property>
+          </column>
+         </widget>
+        </item>
+
+       </layout>
+      </widget>
+     </item>
+
+     <item>
+      <widget class="QFrame" name="warningPanel">
+       <property name="maximumSize">
+        <size>
+         <width>16777215</width>
+         <height>75</height>
+        </size>
+       </property>
+       <layout class="QVBoxLayout" name="warningLayout">
+        <property name="leftMargin">
+         <number>12</number>
+        </property>
+        <property name="topMargin">
+         <number>6</number>
+        </property>
+        <property name="rightMargin">
+         <number>12</number>
+        </property>
+        <property name="bottomMargin">
+         <number>6</number>
+        </property>
+        <property name="spacing">
+         <number>4</number>
+        </property>
+        <item>
+         <widget class="QLabel" name="lblLowStockTitle">
+          <property name="maximumSize">
+           <size>
+            <width>16777215</width>
+            <height>20</height>
+           </size>
+          </property>
+          <property name="text">
+           <string>⚠️ Sản phẩm sắp hết hàng</string>
+          </property>
+          <property name="styleSheet">
+           <string>color: #dc2626; font-size: 15px; font-weight: bold;</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QListWidget" name="listLowStock"/>
+        </item>
+       </layout>
+      </widget>
+     </item>
+
+    </layout>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

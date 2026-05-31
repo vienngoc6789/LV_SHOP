@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>DashboardHomePage</class>
+ <widget class="QWidget" name="DashboardHomePage">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1050</width>
+    <height>680</height>
+   </rect>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">
+QWidget#DashboardHomePage {
+    background-color: #f8fafc;
+}
+
+#cardRevenueToday, #cardOrderToday, #cardProductCount, #cardCustomerCount,
+#chartPanel, #quickActionPanel, #recentActivityPanel, #warningPanel {
+    background-color: white;
+    border: 1px solid #dbeafe;
+    border-radius: 18px;
+}
+
+#cardRevenueToday:hover, #cardOrderToday:hover, #cardProductCount:hover, #cardCustomerCount:hover,
+#chartPanel:hover, #quickActionPanel:hover, #recentActivityPanel:hover, #warningPanel:hover {
+    border: 2px solid #60a5fa;
+}
+
+#lblRevenueIcon, #lblOrderIcon, #lblProductIcon, #lblCustomerIcon {
+    font-size: 30px;
+}
+
+#lblRevenueTitle, #lblOrderTitle, #lblProductTitle, #lblCustomerTitle {
+    color: #64748b;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+#lblRevenueToday, #lblOrderToday, #lblProductCount, #lblCustomerCount {
+    color: #1e3a8a;
+    font-size: 26px;
+    font-weight: bold;
+}
+
+#lblRevenueSub, #lblOrderSub, #lblProductSub, #lblCustomerSub {
+    color: #16a34a;
+    font-size: 12px;
+}
+
+#lblChartTitle, #lblQuickActionTitle, #lblRecentActivityTitle, #lblWarningTitle {
+    color: #1e3a8a;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+#chartFrame {
+    background-color: #f8fafc;
+    border: 1px dashed #93c5fd;
+    border-radius: 14px;
+}
+
+#lblChartPlaceholder {
+    color: #64748b;
+    font-size: 15px;
+}
+
+#btnCreateOrder, #btnAddProduct, #btnAddCustomer {
+    background-color: #2563eb;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    padding: 12px;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+#btnCreateOrder:hover, #btnAddProduct:hover, #btnAddCustomer:hover {
+    background-color: #1d4ed8;
+}
+
+#btnCreateOrder:pressed, #btnAddProduct:pressed, #btnAddCustomer:pressed {
+    background-color: #1e40af;
+}
+
+QListWidget {
+    background-color: #f8fafc;
+    border: 1px solid #dbeafe;
+    border-radius: 12px;
+    padding: 8px;
+    color: #334155;
+    font-size: 13px;
+}
+
+QListWidget::item {
+    padding: 8px;
+    border-radius: 8px;
+}
+
+QListWidget::item:hover {
+    background-color: #dbeafe;
+}
+   </string>
+  </property>
+
+  <layout class="QVBoxLayout" name="mainLayout">
+   <property name="leftMargin"><number>18</number></property>
+   <property name="topMargin"><number>18</number></property>
+   <property name="rightMargin"><number>18</number></property>
+   <property name="bottomMargin"><number>18</number></property>
+   <property name="spacing"><number>18</number></property>
+
+   <item>
+    <layout class="QHBoxLayout" name="statCardsLayout">
+     <property name="spacing"><number>16</number></property>
+
+     <item>
+      <widget class="QFrame" name="cardRevenueToday">
+       <property name="minimumSize"><size><width>0</width><height>135</height></size></property>
+       <layout class="QVBoxLayout" name="revenueCardLayout">
+        <property name="leftMargin"><number>18</number></property>
+        <property name="topMargin"><number>14</number></property>
+        <property name="rightMargin"><number>18</number></property>
+        <property name="bottomMargin"><number>14</number></property>
+        <item><widget class="QLabel" name="lblRevenueIcon"><property name="text"><string>💰</string></property></widget></item>
+        <item><widget class="QLabel" name="lblRevenueTitle"><property name="text"><string>Doanh thu hôm nay</string></property></widget></item>
+        <item><widget class="QLabel" name="lblRevenueToday"><property name="text"><string>0 ₫</string></property></widget></item>
+        <item><widget class="QLabel" name="lblRevenueSub"><property name="text"><string>Realtime update</string></property></widget></item>
+       </layout>
+      </widget>
+     </item>
+
+     <item>
+      <widget class="QFrame" name="cardOrderToday">
+       <property name="minimumSize"><size><width>0</width><height>135</height></size></property>
+       <layout class="QVBoxLayout" name="orderCardLayout">
+        <property name="leftMargin"><number>18</number></property>
+        <property name="topMargin"><number>14</number></property>
+        <property name="rightMargin"><number>18</number></property>
+        <property name="bottomMargin"><number>14</number></property>
+        <item><widget class="QLabel" name="lblOrderIcon"><property name="text"><string>🧾</string></property></widget></item>
+        <item><widget class="QLabel" name="lblOrderTitle"><property name="text"><string>Số đơn hôm nay</string></property></widget></item>
+        <item><widget class="QLabel" name="lblOrderToday"><property name="text"><string>0</string></property></widget></item>
+        <item><widget class="QLabel" name="lblOrderSub"><property name="text"><string>Đơn hàng mới</string></property></widget></item>
+       </layout>
+      </widget>
+     </item>
+
+     <item>
+      <widget class="QFrame" name="cardProductCount">
+       <property name="minimumSize"><size><width>0</width><height>135</height></size></property>
+       <layout class="QVBoxLayout" name="productCardLayout">
+        <property name="leftMargin"><number>18</number></property>
+        <property name="topMargin"><number>14</number></property>
+        <property name="rightMargin"><number>18</number></property>
+        <property name="bottomMargin"><number>14</number></property>
+        <item><widget class="QLabel" name="lblProductIcon"><property name="text"><string>📦</string></property></widget></item>
+        <item><widget class="QLabel" name="lblProductTitle"><property name="text"><string>Sản phẩm trong kho</string></property></widget></item>
+        <item><widget class="QLabel" name="lblProductCount"><property name="text"><string>0</string></property></widget></item>
+        <item><widget class="QLabel" name="lblProductSub"><property name="text"><string>Tồn kho hiện tại</string></property></widget></item>
+       </layout>
+      </widget>
+     </item>
+
+     <item>
+      <widget class="QFrame" name="cardCustomerCount">
+       <property name="minimumSize"><size><width>0</width><height>135</height></size></property>
+       <layout class="QVBoxLayout" name="customerCardLayout">
+        <property name="leftMargin"><number>18</number></property>
+        <property name="topMargin"><number>14</number></property>
+        <property name="rightMargin"><number>18</number></property>
+        <property name="bottomMargin"><number>14</number></property>
+        <item><widget class="QLabel" name="lblCustomerIcon"><property name="text"><string>👥</string></property></widget></item>
+        <item><widget class="QLabel" name="lblCustomerTitle"><property name="text"><string>Khách hàng</string></property></widget></item>
+        <item><widget class="QLabel" name="lblCustomerCount"><property name="text"><string>0</string></property></widget></item>
+        <item><widget class="QLabel" name="lblCustomerSub"><property name="text"><string>Tổng khách hàng</string></property></widget></item>
+       </layout>
+      </widget>
+     </item>
+    </layout>
+   </item>
+
+   <item>
+    <layout class="QHBoxLayout" name="centerAreaLayout">
+     <property name="spacing"><number>18</number></property>
+
+     <item>
+      <widget class="QFrame" name="chartPanel">
+       <layout class="QVBoxLayout" name="chartPanelLayout">
+        <property name="leftMargin"><number>18</number></property>
+        <property name="topMargin"><number>16</number></property>
+        <property name="rightMargin"><number>18</number></property>
+        <property name="bottomMargin"><number>16</number></property>
+        <property name="spacing"><number>12</number></property>
+        <item><widget class="QLabel" name="lblChartTitle"><property name="text"><string>Doanh thu 7 ngày gần nhất</string></property></widget></item>
+        <item>
+         <widget class="QFrame" name="chartFrame">
+          <property name="minimumSize"><size><width>0</width><height>230</height></size></property>
+          <layout class="QVBoxLayout" name="chartFrameLayout">
+           <item><spacer name="chartTopSpacer"><property name="orientation"><enum>Qt::Vertical</enum></property><property name="sizeHint" stdset="0"><size><width>20</width><height>40</height></size></property></spacer></item>
+           <item><widget class="QLabel" name="lblChartPlaceholder"><property name="text"><string>Biểu đồ sẽ được render bằng Python</string></property><property name="alignment"><set>Qt::AlignCenter</set></property></widget></item>
+           <item><spacer name="chartBottomSpacer"><property name="orientation"><enum>Qt::Vertical</enum></property><property name="sizeHint" stdset="0"><size><width>20</width><height>40</height></size></property></spacer></item>
+          </layout>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </item>
+
+     <item>
+      <widget class="QFrame" name="quickActionPanel">
+       <property name="minimumSize"><size><width>280</width><height>0</height></size></property>
+       <property name="maximumSize"><size><width>340</width><height>16777215</height></size></property>
+       <layout class="QVBoxLayout" name="quickActionLayout">
+        <property name="leftMargin"><number>18</number></property>
+        <property name="topMargin"><number>16</number></property>
+        <property name="rightMargin"><number>18</number></property>
+        <property name="bottomMargin"><number>16</number></property>
+        <property name="spacing"><number>12</number></property>
+        <item><widget class="QLabel" name="lblQuickActionTitle"><property name="text"><string>Truy cập nhanh</string></property></widget></item>
+        <item><widget class="QPushButton" name="btnCreateOrder"><property name="text"><string>+ Tạo đơn hàng</string></property><property name="minimumSize"><size><width>0</width><height>46</height></size></property></widget></item>
+        <item><widget class="QPushButton" name="btnAddProduct"><property name="text"><string>+ Thêm sản phẩm</string></property><property name="minimumSize"><size><width>0</width><height>46</height></size></property></widget></item>
+        <item><widget class="QPushButton" name="btnAddCustomer"><property name="text"><string>+ Thêm khách hàng</string></property><property name="minimumSize"><size><width>0</width><height>46</height></size></property></widget></item>
+        <item><spacer name="quickActionSpacer"><property name="orientation"><enum>Qt::Vertical</enum></property><property name="sizeHint" stdset="0"><size><width>20</width><height>40</height></size></property></spacer></item>
+       </layout>
+      </widget>
+     </item>
+    </layout>
+   </item>
+
+   <item>
+    <layout class="QHBoxLayout" name="bottomAreaLayout">
+     <property name="spacing"><number>18</number></property>
+
+     <item>
+      <widget class="QFrame" name="recentActivityPanel">
+       <layout class="QVBoxLayout" name="recentActivityLayout">
+        <property name="leftMargin"><number>18</number></property>
+        <property name="topMargin"><number>16</number></property>
+        <property name="rightMargin"><number>18</number></property>
+        <property name="bottomMargin"><number>16</number></property>
+        <property name="spacing"><number>12</number></property>
+        <item><widget class="QLabel" name="lblRecentActivityTitle"><property name="text"><string>Hoạt động gần đây</string></property></widget></item>
+        <item><widget class="QListWidget" name="listRecentActivity"/></item>
+       </layout>
+      </widget>
+     </item>
+
+     <item>
+      <widget class="QFrame" name="warningPanel">
+       <layout class="QVBoxLayout" name="warningLayout">
+        <property name="leftMargin"><number>18</number></property>
+        <property name="topMargin"><number>16</number></property>
+        <property name="rightMargin"><number>18</number></property>
+        <property name="bottomMargin"><number>16</number></property>
+        <property name="spacing"><number>12</number></property>
+        <item><widget class="QLabel" name="lblWarningTitle"><property name="text"><string>Cảnh báo hệ thống</string></property></widget></item>
+        <item><widget class="QListWidget" name="listWarning"/></item>
+       </layout>
+      </widget>
+     </item>
+    </layout>
+   </item>
+
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

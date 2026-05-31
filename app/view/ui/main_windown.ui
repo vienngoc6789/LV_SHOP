@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1000</width>
+    <height>650</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>LV SHOP</string>
+  </property>
+
+  <widget class="QWidget" name="centralwidget">
+   <property name="styleSheet">
+    <string notr="true">
+QWidget#centralwidget {
+    background-color: #eff6ff;
+}
+
+QFrame#heroCard {
+    background-color: white;
+    border-radius: 26px;
+    border: 1px solid #dbeafe;
+}
+
+QLabel#lblLogo {
+    color: #2563eb;
+    font-size: 46px;
+    font-weight: bold;
+}
+
+QLabel#lblTitle {
+    color: #1e3a8a;
+    font-size: 34px;
+    font-weight: bold;
+}
+
+QLabel#lblSubtitle {
+    color: #475569;
+    font-size: 16px;
+}
+
+QLabel#lblDescription {
+    color: #64748b;
+    font-size: 14px;
+}
+
+QPushButton#btnOpenLogin {
+    background-color: #2563eb;
+    color: white;
+    border: none;
+    border-radius: 14px;
+    padding: 13px;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+QPushButton#btnOpenLogin:hover {
+    background-color: #1d4ed8;
+}
+
+QPushButton#btnOpenRegister {
+    background-color: white;
+    color: #2563eb;
+    border: 2px solid #2563eb;
+    border-radius: 14px;
+    padding: 13px;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+QPushButton#btnOpenRegister:hover {
+    background-color: #dbeafe;
+}
+    </string>
+   </property>
+
+   <layout class="QVBoxLayout" name="mainLayout">
+    <item>
+     <spacer name="topSpacer">
+      <property name="orientation">
+       <enum>Qt::Vertical</enum>
+      </property>
+     </spacer>
+    </item>
+
+    <item>
+     <layout class="QHBoxLayout" name="centerLayout">
+      <item>
+       <spacer name="leftSpacer">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+       </spacer>
+      </item>
+
+      <item>
+       <widget class="QFrame" name="heroCard">
+        <property name="minimumSize">
+         <size>
+          <width>760</width>
+          <height>460</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>820</width>
+          <height>500</height>
+         </size>
+        </property>
+
+        <layout class="QVBoxLayout" name="heroLayout">
+         <property name="leftMargin">
+          <number>50</number>
+         </property>
+         <property name="topMargin">
+          <number>42</number>
+         </property>
+         <property name="rightMargin">
+          <number>50</number>
+         </property>
+         <property name="bottomMargin">
+          <number>42</number>
+         </property>
+         <property name="spacing">
+          <number>18</number>
+         </property>
+
+         <item>
+          <widget class="QLabel" name="lblLogo">
+           <property name="text">
+            <string>📱 LV SHOP</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
+          </widget>
+         </item>
+
+         <item>
+          <widget class="QLabel" name="lblTitle">
+           <property name="text">
+            <string>Hệ thống quản lý cửa hàng điện thoại</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
+          </widget>
+         </item>
+
+         <item>
+          <widget class="QLabel" name="lblSubtitle">
+           <property name="text">
+            <string>Quản lý sản phẩm, nhân viên, khách hàng và đơn hàng dễ dàng hơn</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
+           <property name="wordWrap">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+
+         <item>
+          <widget class="QLabel" name="lblDescription">
+           <property name="text">
+            <string>LV SHOP hỗ trợ quản lý thông tin điện thoại, tồn kho, tài khoản nhân viên, lịch sử bán hàng và thống kê doanh thu trong một giao diện desktop hiện đại.</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
+           <property name="wordWrap">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+
+         <item>
+          <spacer name="middleSpacer">
+           <property name="orientation">
+            <enum>Qt::Vertical</enum>
+           </property>
+          </spacer>
+         </item>
+
+         <item>
+          <layout class="QHBoxLayout" name="buttonLayout">
+           <item>
+            <spacer name="buttonLeftSpacer">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+            </spacer>
+           </item>
+
+           <item>
+            <widget class="QPushButton" name="btnOpenLogin">
+             <property name="minimumSize">
+              <size>
+               <width>180</width>
+               <height>48</height>
+              </size>
+             </property>
+             <property name="text">
+              <string>Đăng nhập</string>
+             </property>
+            </widget>
+           </item>
+
+           <item>
+            <widget class="QPushButton" name="btnOpenRegister">
+             <property name="minimumSize">
+              <size>
+               <width>180</width>
+               <height>48</height>
+              </size>
+             </property>
+             <property name="text">
+              <string>Đăng ký</string>
+             </property>
+            </widget>
+           </item>
+
+           <item>
+            <spacer name="buttonRightSpacer">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+            </spacer>
+           </item>
+          </layout>
+         </item>
+
+        </layout>
+       </widget>
+      </item>
+
+      <item>
+       <spacer name="rightSpacer">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+       </spacer>
+      </item>
+     </layout>
+    </item>
+
+    <item>
+     <spacer name="bottomSpacer">
+      <property name="orientation">
+       <enum>Qt::Vertical</enum>
+      </property>
+     </spacer>
+    </item>
+   </layout>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

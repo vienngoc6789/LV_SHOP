@@ -1,0 +1,29 @@
+LV SHOP - HÓA ĐƠN BÁN HÀNG
+=============================================
+Mã hóa đơn: #12
+Ngày tạo: 2026-05-03 23:51:44
+Nhân viên bán hàng: Admin LV SHOP
+
+THÔNG TIN KHÁCH HÀNG
+Họ tên: Luong Van Ngoc
+SĐT: 0878642005
+Email: Ngoc@gmail.com
+Địa chỉ: Tam Dao
+
+SẢN PHẨM
+---------------------------------------------
+1. Samsung Galaxy Z Flip5 - 256GB - Tím
+   IMEI: 357890243000002
+   Giá: 18,990,000 đ
+   Bảo hành: 12 tháng
+
+---------------------------------------------
+Tạm tính: 18,990,000 đ
+Mã giảm giá: Không
+Giảm giá: 0 đ
+Tổng thanh toán: 18,990,000 đ
+Phương thức: QR chuyển khoản
+Khách đã trả: 18,990,000 đ
+Trả lại: 0 đ
+=============================================
+Cảm ơn quý khách!

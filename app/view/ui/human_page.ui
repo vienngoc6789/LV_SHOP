@@ -1,0 +1,519 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>HumanPage</class>
+ <widget class="QWidget" name="HumanPage">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1050</width>
+    <height>560</height>
+   </rect>
+  </property>
+
+  <property name="styleSheet">
+   <string><![CDATA[
+QWidget#HumanPage {
+    background-color: #f8fafc;
+}
+
+QFrame#formPanel,
+QFrame#listPanel,
+QFrame#performancePanel,
+QFrame#summaryCard1,
+QFrame#summaryCard2,
+QFrame#summaryCard3,
+QFrame#summaryCard4,
+QFrame#passwordBox {
+    background-color: white;
+    border: 1px solid #dbeafe;
+    border-radius: 16px;
+}
+
+QFrame#passwordBox {
+    background-color: #f8fbff;
+}
+
+QLabel.sectionTitle {
+    color: #1e3a8a;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+QLabel.formLabel {
+    color: #334155;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+QLabel.statNumber {
+    color: #2563eb;
+    font-size: 21px;
+    font-weight: bold;
+}
+
+QLabel.statText {
+    color: #64748b;
+    font-size: 12px;
+}
+
+QLineEdit,
+QComboBox,
+QDateEdit {
+    background-color: #f8fafc;
+    border: 1px solid #cbd5e1;
+    border-radius: 12px;
+    padding: 6px 32px 6px 10px;
+    color: #0f172a;
+    font-size: 13px;
+    min-height: 28px;
+}
+
+QLineEdit:focus,
+QComboBox:focus,
+QDateEdit:focus {
+    border: 2px solid #2563eb;
+    background-color: white;
+}
+
+QComboBox::drop-down,
+QDateEdit::drop-down {
+    subcontrol-origin: padding;
+    subcontrol-position: top right;
+    width: 28px;
+    border-left: 1px solid #cbd5e1;
+    border-top-right-radius: 12px;
+    border-bottom-right-radius: 12px;
+    background-color: #eff6ff;
+}
+
+QComboBox::down-arrow,
+QDateEdit::down-arrow {
+    width: 10px;
+    height: 10px;
+}
+
+QComboBox QAbstractItemView {
+    background-color: white;
+    color: #0f172a;
+    selection-background-color: #dbeafe;
+    selection-color: #0f172a;
+    border: 1px solid #93c5fd;
+    border-radius: 10px;
+    padding: 6px;
+    outline: 0;
+    font-size: 13px;
+}
+
+QPushButton {
+    border: none;
+    border-radius: 11px;
+    padding: 7px 10px;
+    font-size: 13px;
+    font-weight: bold;
+    min-height: 24px;
+}
+
+QPushButton#btnAddUser,
+QPushButton#btnSearch,
+QPushButton#btnViewPerformance {
+    background-color: #2563eb;
+    color: white;
+}
+
+QPushButton#btnUpdateUser,
+QPushButton#btnResetPassword,
+QPushButton#btnToggleStatus {
+    background-color: #16a34a;
+    color: white;
+}
+
+QPushButton#btnDeleteUser {
+    background-color: #dc2626;
+    color: white;
+}
+
+QPushButton#btnClearForm,
+QPushButton#btnRefresh,
+QPushButton#btnClearFilter,
+QPushButton#btnExportHuman {
+    background-color: #e2e8f0;
+    color: #0f172a;
+}
+
+QPushButton#btnGrantManager {
+    background-color: #7c3aed;
+    color: white;
+}
+
+QTableWidget {
+    background-color: white;
+    border: 1px solid #dbeafe;
+    border-radius: 12px;
+    gridline-color: #e2e8f0;
+    color: #0f172a;
+    font-size: 12px;
+}
+
+QTableWidget::item {
+    padding: 5px;
+}
+
+QTableWidget::item:selected {
+    background-color: #dbeafe;
+    color: #0f172a;
+}
+
+QHeaderView::section {
+    background-color: #1e3a8a;
+    color: white;
+    padding: 6px;
+    border: none;
+    font-weight: bold;
+}
+   ]]></string>
+  </property>
+
+  <layout class="QVBoxLayout" name="mainLayout">
+   <property name="leftMargin"><number>14</number></property>
+   <property name="topMargin"><number>10</number></property>
+   <property name="rightMargin"><number>14</number></property>
+   <property name="bottomMargin"><number>10</number></property>
+   <property name="spacing"><number>10</number></property>
+
+   <item>
+    <layout class="QHBoxLayout" name="summaryLayout">
+     <property name="spacing"><number>10</number></property>
+
+     <item>
+      <widget class="QFrame" name="summaryCard1">
+       <property name="maximumSize"><size><width>16777215</width><height>74</height></size></property>
+       <layout class="QVBoxLayout" name="summaryCard1Layout">
+        <property name="leftMargin"><number>12</number></property>
+        <property name="topMargin"><number>8</number></property>
+        <property name="rightMargin"><number>12</number></property>
+        <property name="bottomMargin"><number>8</number></property>
+        <item><widget class="QLabel" name="lblTotalUsers"><property name="text"><string>0</string></property><property name="class" stdset="0"><string>statNumber</string></property></widget></item>
+        <item><widget class="QLabel" name="lblTotalUsersText"><property name="text"><string>Tổng nhân sự</string></property><property name="class" stdset="0"><string>statText</string></property></widget></item>
+       </layout>
+      </widget>
+     </item>
+
+     <item>
+      <widget class="QFrame" name="summaryCard2">
+       <property name="maximumSize"><size><width>16777215</width><height>74</height></size></property>
+       <layout class="QVBoxLayout" name="summaryCard2Layout">
+        <property name="leftMargin"><number>12</number></property>
+        <property name="topMargin"><number>8</number></property>
+        <property name="rightMargin"><number>12</number></property>
+        <property name="bottomMargin"><number>8</number></property>
+        <item><widget class="QLabel" name="lblActiveUsers"><property name="text"><string>0</string></property><property name="class" stdset="0"><string>statNumber</string></property></widget></item>
+        <item><widget class="QLabel" name="lblActiveUsersText"><property name="text"><string>Tài khoản hoạt động</string></property><property name="class" stdset="0"><string>statText</string></property></widget></item>
+       </layout>
+      </widget>
+     </item>
+
+     <item>
+      <widget class="QFrame" name="summaryCard3">
+       <property name="maximumSize"><size><width>16777215</width><height>74</height></size></property>
+       <layout class="QVBoxLayout" name="summaryCard3Layout">
+        <property name="leftMargin"><number>12</number></property>
+        <property name="topMargin"><number>8</number></property>
+        <property name="rightMargin"><number>12</number></property>
+        <property name="bottomMargin"><number>8</number></property>
+        <item><widget class="QLabel" name="lblSaleUsers"><property name="text"><string>0</string></property><property name="class" stdset="0"><string>statNumber</string></property></widget></item>
+        <item><widget class="QLabel" name="lblSaleUsersText"><property name="text"><string>Nhân viên bán hàng</string></property><property name="class" stdset="0"><string>statText</string></property></widget></item>
+       </layout>
+      </widget>
+     </item>
+
+     <item>
+      <widget class="QFrame" name="summaryCard4">
+       <property name="maximumSize"><size><width>16777215</width><height>74</height></size></property>
+       <layout class="QVBoxLayout" name="summaryCard4Layout">
+        <property name="leftMargin"><number>12</number></property>
+        <property name="topMargin"><number>8</number></property>
+        <property name="rightMargin"><number>12</number></property>
+        <property name="bottomMargin"><number>8</number></property>
+        <item><widget class="QLabel" name="lblSelectedRevenue"><property name="text"><string>0 đ</string></property><property name="class" stdset="0"><string>statNumber</string></property></widget></item>
+        <item><widget class="QLabel" name="lblSelectedRevenueText"><property name="text"><string>Doanh số NV đang chọn</string></property><property name="class" stdset="0"><string>statText</string></property></widget></item>
+       </layout>
+      </widget>
+     </item>
+
+    </layout>
+   </item>
+
+   <item>
+    <layout class="QHBoxLayout" name="contentLayout">
+     <property name="spacing"><number>10</number></property>
+
+     <item>
+      <widget class="QFrame" name="formPanel">
+       <property name="minimumSize"><size><width>350</width><height>0</height></size></property>
+       <property name="maximumSize"><size><width>385</width><height>16777215</height></size></property>
+
+       <layout class="QVBoxLayout" name="formLayout">
+        <property name="leftMargin"><number>14</number></property>
+        <property name="topMargin"><number>12</number></property>
+        <property name="rightMargin"><number>14</number></property>
+        <property name="bottomMargin"><number>12</number></property>
+        <property name="spacing"><number>7</number></property>
+
+        <item>
+         <widget class="QLabel" name="lblFormTitle">
+          <property name="text"><string>👨‍💼 Hồ sơ nhân sự</string></property>
+          <property name="class" stdset="0"><string>sectionTitle</string></property>
+         </widget>
+        </item>
+
+        <item><widget class="QLabel" name="lblFullName"><property name="text"><string>Họ tên</string></property><property name="class" stdset="0"><string>formLabel</string></property></widget></item>
+        <item><widget class="QLineEdit" name="txtFullName"><property name="minimumSize"><size><width>0</width><height>38</height></size></property><property name="placeholderText"><string>Nhập họ tên nhân viên</string></property></widget></item>
+
+        <item>
+         <layout class="QHBoxLayout" name="userTitleLayout">
+          <property name="spacing"><number>8</number></property>
+          <item><widget class="QLabel" name="lblUsername"><property name="text"><string>Tên đăng nhập</string></property><property name="class" stdset="0"><string>formLabel</string></property></widget></item>
+          <item><widget class="QLabel" name="lblPhone"><property name="text"><string>SĐT</string></property><property name="class" stdset="0"><string>formLabel</string></property></widget></item>
+         </layout>
+        </item>
+
+        <item>
+         <layout class="QHBoxLayout" name="userPhoneLayout">
+          <property name="spacing"><number>8</number></property>
+          <item><widget class="QLineEdit" name="txtUsername"><property name="minimumSize"><size><width>0</width><height>38</height></size></property><property name="placeholderText"><string>username</string></property></widget></item>
+          <item><widget class="QLineEdit" name="txtPhone"><property name="minimumSize"><size><width>0</width><height>38</height></size></property><property name="placeholderText"><string>098...</string></property></widget></item>
+         </layout>
+        </item>
+
+        <item><widget class="QLabel" name="lblEmail"><property name="text"><string>Email</string></property><property name="class" stdset="0"><string>formLabel</string></property></widget></item>
+        <item><widget class="QLineEdit" name="txtEmail"><property name="minimumSize"><size><width>0</width><height>38</height></size></property><property name="placeholderText"><string>email@gmail.com</string></property></widget></item>
+
+        <item>
+         <layout class="QHBoxLayout" name="roleStatusTitleLayout">
+          <property name="spacing"><number>8</number></property>
+          <item><widget class="QLabel" name="lblRole"><property name="text"><string>Vai trò</string></property><property name="class" stdset="0"><string>formLabel</string></property></widget></item>
+          <item><widget class="QLabel" name="lblStatus"><property name="text"><string>Trạng thái</string></property><property name="class" stdset="0"><string>formLabel</string></property></widget></item>
+         </layout>
+        </item>
+
+        <item>
+         <layout class="QHBoxLayout" name="roleStatusLayout">
+          <property name="spacing"><number>8</number></property>
+          <item>
+           <widget class="QComboBox" name="cboRole">
+            <property name="minimumSize"><size><width>0</width><height>38</height></size></property>
+            <item><property name="text"><string>admin</string></property></item>
+            <item><property name="text"><string>quản lý</string></property></item>
+            <item><property name="text"><string>sale</string></property></item>
+            <item><property name="text"><string>nhân viên</string></property></item>
+            <item><property name="text"><string>kỹ thuật</string></property></item>
+           </widget>
+          </item>
+          <item>
+           <widget class="QComboBox" name="cboStatus">
+            <property name="minimumSize"><size><width>0</width><height>38</height></size></property>
+            <item><property name="text"><string>active</string></property></item>
+            <item><property name="text"><string>inactive</string></property></item>
+            <item><property name="text"><string>locked</string></property></item>
+           </widget>
+          </item>
+         </layout>
+        </item>
+
+        <item>
+         <widget class="QFrame" name="passwordBox">
+          <layout class="QVBoxLayout" name="passwordLayout">
+           <property name="leftMargin"><number>12</number></property>
+           <property name="topMargin"><number>10</number></property>
+           <property name="rightMargin"><number>12</number></property>
+           <property name="bottomMargin"><number>10</number></property>
+           <property name="spacing"><number>7</number></property>
+
+           <item>
+            <widget class="QLabel" name="lblPasswordTitle">
+             <property name="text"><string>🔐 Mật khẩu</string></property>
+             <property name="class" stdset="0"><string>sectionTitle</string></property>
+            </widget>
+           </item>
+
+           <item>
+            <widget class="QLineEdit" name="txtPassword">
+             <property name="minimumSize"><size><width>0</width><height>38</height></size></property>
+             <property name="placeholderText"><string>Mật khẩu khi thêm mới / đổi mật khẩu</string></property>
+             <property name="echoMode"><enum>QLineEdit::EchoMode::Password</enum></property>
+            </widget>
+           </item>
+
+           <item>
+            <widget class="QLineEdit" name="txtConfirmPassword">
+             <property name="minimumSize"><size><width>0</width><height>38</height></size></property>
+             <property name="placeholderText"><string>Nhập lại mật khẩu</string></property>
+             <property name="echoMode"><enum>QLineEdit::EchoMode::Password</enum></property>
+            </widget>
+           </item>
+
+           <item>
+            <widget class="QPushButton" name="btnResetPassword">
+             <property name="minimumSize"><size><width>0</width><height>38</height></size></property>
+             <property name="text"><string>🔑 Đổi mật khẩu</string></property>
+            </widget>
+           </item>
+
+          </layout>
+         </widget>
+        </item>
+
+        <item>
+         <layout class="QHBoxLayout" name="buttonRow1">
+          <property name="spacing"><number>8</number></property>
+          <item><widget class="QPushButton" name="btnAddUser"><property name="minimumSize"><size><width>0</width><height>38</height></size></property><property name="text"><string>➕ Thêm</string></property></widget></item>
+          <item><widget class="QPushButton" name="btnUpdateUser"><property name="minimumSize"><size><width>0</width><height>38</height></size></property><property name="text"><string>💾 Sửa</string></property></widget></item>
+         </layout>
+        </item>
+
+        <item>
+         <layout class="QHBoxLayout" name="buttonRow2">
+          <property name="spacing"><number>8</number></property>
+          <item><widget class="QPushButton" name="btnDeleteUser"><property name="minimumSize"><size><width>0</width><height>38</height></size></property><property name="text"><string>🗑 Xóa</string></property></widget></item>
+          <item><widget class="QPushButton" name="btnClearForm"><property name="minimumSize"><size><width>0</width><height>38</height></size></property><property name="text"><string>🧹 Xóa form</string></property></widget></item>
+         </layout>
+        </item>
+
+        <item><widget class="QPushButton" name="btnToggleStatus"><property name="minimumSize"><size><width>0</width><height>38</height></size></property><property name="text"><string>🔁 Bật / tắt tài khoản</string></property></widget></item>
+        <item><widget class="QPushButton" name="btnGrantManager"><property name="minimumSize"><size><width>0</width><height>38</height></size></property><property name="text"><string>⭐ Gán quyền quản lý</string></property></widget></item>
+
+       </layout>
+      </widget>
+     </item>
+
+     <item>
+      <layout class="QVBoxLayout" name="rightLayout">
+       <property name="spacing"><number>10</number></property>
+
+       <item>
+        <widget class="QFrame" name="listPanel">
+         <layout class="QVBoxLayout" name="listLayout">
+          <property name="leftMargin"><number>12</number></property>
+          <property name="topMargin"><number>10</number></property>
+          <property name="rightMargin"><number>12</number></property>
+          <property name="bottomMargin"><number>10</number></property>
+          <property name="spacing"><number>8</number></property>
+
+          <item>
+           <layout class="QHBoxLayout" name="filterLayout">
+            <property name="spacing"><number>8</number></property>
+
+            <item><widget class="QLabel" name="lblListTitle"><property name="text"><string>📋 Danh sách nhân sự</string></property><property name="class" stdset="0"><string>sectionTitle</string></property></widget></item>
+
+            <item>
+             <spacer name="listSpacer">
+              <property name="orientation"><enum>Qt::Orientation::Horizontal</enum></property>
+              <property name="sizeHint" stdset="0"><size><width>40</width><height>20</height></size></property>
+             </spacer>
+            </item>
+
+            <item><widget class="QLineEdit" name="txtSearch"><property name="minimumSize"><size><width>210</width><height>36</height></size></property><property name="placeholderText"><string>🔍 Tìm tên, username, SĐT...</string></property></widget></item>
+
+            <item>
+             <widget class="QComboBox" name="cboFilterRole">
+              <property name="minimumSize"><size><width>120</width><height>36</height></size></property>
+              <item><property name="text"><string>Tất cả vai trò</string></property></item>
+              <item><property name="text"><string>admin</string></property></item>
+              <item><property name="text"><string>quản lý</string></property></item>
+              <item><property name="text"><string>sale</string></property></item>
+              <item><property name="text"><string>nhân viên</string></property></item>
+              <item><property name="text"><string>kỹ thuật</string></property></item>
+             </widget>
+            </item>
+
+            <item>
+             <widget class="QComboBox" name="cboFilterStatus">
+              <property name="minimumSize"><size><width>115</width><height>36</height></size></property>
+              <item><property name="text"><string>Tất cả trạng thái</string></property></item>
+              <item><property name="text"><string>active</string></property></item>
+              <item><property name="text"><string>inactive</string></property></item>
+              <item><property name="text"><string>locked</string></property></item>
+             </widget>
+            </item>
+
+            <item><widget class="QPushButton" name="btnSearch"><property name="minimumSize"><size><width>82</width><height>36</height></size></property><property name="text"><string>🔍 Tìm</string></property></widget></item>
+            <item><widget class="QPushButton" name="btnClearFilter"><property name="minimumSize"><size><width>88</width><height>36</height></size></property><property name="text"><string>🧹 Xóa lọc</string></property></widget></item>
+            <item><widget class="QPushButton" name="btnRefresh"><property name="minimumSize"><size><width>82</width><height>36</height></size></property><property name="text"><string>🔄 Mới</string></property></widget></item>
+
+           </layout>
+          </item>
+
+          <item>
+           <widget class="QTableWidget" name="tableUsers">
+            <property name="minimumSize"><size><width>0</width><height>250</height></size></property>
+            <property name="columnCount"><number>10</number></property>
+            <column><property name="text"><string>ID</string></property></column>
+            <column><property name="text"><string>Họ tên</string></property></column>
+            <column><property name="text"><string>Username</string></property></column>
+            <column><property name="text"><string>SĐT</string></property></column>
+            <column><property name="text"><string>Email</string></property></column>
+            <column><property name="text"><string>Vai trò</string></property></column>
+            <column><property name="text"><string>Trạng thái</string></property></column>
+            <column><property name="text"><string>Số đơn</string></property></column>
+            <column><property name="text"><string>Doanh số</string></property></column>
+            <column><property name="text"><string>Ngày tạo</string></property></column>
+           </widget>
+          </item>
+
+          <item>
+           <layout class="QHBoxLayout" name="listActionLayout">
+            <property name="spacing"><number>8</number></property>
+            <item><widget class="QPushButton" name="btnViewPerformance"><property name="minimumSize"><size><width>150</width><height>38</height></size></property><property name="text"><string>📊 Xem doanh số NV</string></property></widget></item>
+            <item>
+             <spacer name="actionSpacer">
+              <property name="orientation"><enum>Qt::Orientation::Horizontal</enum></property>
+              <property name="sizeHint" stdset="0"><size><width>40</width><height>20</height></size></property>
+             </spacer>
+            </item>
+            <item><widget class="QPushButton" name="btnExportHuman"><property name="minimumSize"><size><width>130</width><height>38</height></size></property><property name="text"><string>📤 Xuất danh sách</string></property></widget></item>
+           </layout>
+          </item>
+
+         </layout>
+        </widget>
+       </item>
+
+       <item>
+        <widget class="QFrame" name="performancePanel">
+         <layout class="QVBoxLayout" name="performanceLayout">
+          <property name="leftMargin"><number>12</number></property>
+          <property name="topMargin"><number>10</number></property>
+          <property name="rightMargin"><number>12</number></property>
+          <property name="bottomMargin"><number>10</number></property>
+          <property name="spacing"><number>8</number></property>
+
+          <item><widget class="QLabel" name="lblPerformanceTitle"><property name="text"><string>🏆 Doanh số theo nhân viên</string></property><property name="class" stdset="0"><string>sectionTitle</string></property></widget></item>
+
+          <item>
+           <widget class="QTableWidget" name="tablePerformance">
+            <property name="minimumSize"><size><width>0</width><height>125</height></size></property>
+            <property name="columnCount"><number>5</number></property>
+            <column><property name="text"><string>Top</string></property></column>
+            <column><property name="text"><string>Nhân viên</string></property></column>
+            <column><property name="text"><string>Số đơn</string></property></column>
+            <column><property name="text"><string>Doanh số</string></property></column>
+            <column><property name="text"><string>Trung bình/đơn</string></property></column>
+           </widget>
+          </item>
+
+         </layout>
+        </widget>
+       </item>
+
+      </layout>
+     </item>
+
+    </layout>
+   </item>
+
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

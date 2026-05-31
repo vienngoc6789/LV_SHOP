@@ -1,0 +1,647 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>InvoicePage</class>
+ <widget class="QWidget" name="InvoicePage">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1050</width>
+    <height>560</height>
+   </rect>
+  </property>
+  <property name="styleSheet">
+   <string><![CDATA[
+QWidget#InvoicePage {
+    background-color: #f8fafc;
+}
+
+QFrame#filterPanel,
+QFrame#invoicePanel,
+QFrame#detailPanel,
+QFrame#summaryCard1,
+QFrame#summaryCard2,
+QFrame#summaryCard3,
+QFrame#summaryCard4,
+QFrame#detailInfoBox,
+QFrame#moneyBox {
+    background-color: white;
+    border: 1px solid #dbeafe;
+    border-radius: 16px;
+}
+
+QFrame#detailInfoBox,
+QFrame#moneyBox {
+    background-color: #f8fbff;
+}
+
+QLabel.sectionTitle {
+    color: #1e3a8a;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+QLabel.formLabel {
+    color: #334155;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+QLabel.valueLabel {
+    color: #0f172a;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+QLabel.statNumber {
+    color: #2563eb;
+    font-size: 21px;
+    font-weight: bold;
+}
+
+QLabel.statText {
+    color: #64748b;
+    font-size: 12px;
+}
+
+QLineEdit,
+QDateEdit,
+QComboBox {
+    background-color: #f8fafc;
+    border: 1px solid #cbd5e1;
+    border-radius: 12px;
+    padding: 6px 32px 6px 10px;
+    color: #0f172a;
+    font-size: 13px;
+    min-height: 28px;
+}
+
+QLineEdit:focus,
+QDateEdit:focus,
+QComboBox:focus {
+    border: 2px solid #2563eb;
+    background-color: white;
+}
+
+QComboBox::drop-down,
+QDateEdit::drop-down {
+    subcontrol-origin: padding;
+    subcontrol-position: top right;
+    width: 28px;
+    border-left: 1px solid #cbd5e1;
+    border-top-right-radius: 12px;
+    border-bottom-right-radius: 12px;
+    background-color: #eff6ff;
+}
+
+QComboBox QAbstractItemView {
+    background-color: white;
+    color: #0f172a;
+    selection-background-color: #dbeafe;
+    selection-color: #0f172a;
+    border: 1px solid #93c5fd;
+    border-radius: 10px;
+    padding: 6px;
+    outline: 0;
+    font-size: 13px;
+}
+
+QPushButton {
+    border: none;
+    border-radius: 11px;
+    padding: 7px 10px;
+    font-size: 13px;
+    font-weight: bold;
+    min-height: 24px;
+}
+
+QPushButton#btnSearch,
+QPushButton#btnViewDetail,
+QPushButton#btnExportPdf,
+QPushButton#btnReprintInvoice {
+    background-color: #2563eb;
+    color: white;
+}
+
+QPushButton#btnRefresh,
+QPushButton#btnClearFilter {
+    background-color: #e2e8f0;
+    color: #0f172a;
+}
+
+QPushButton#btnCancelInvoice {
+    background-color: #dc2626;
+    color: white;
+}
+
+QPushButton#btnReturnItem {
+    background-color: #f59e0b;
+    color: white;
+}
+
+QTableWidget {
+    background-color: white;
+    border: 1px solid #dbeafe;
+    border-radius: 12px;
+    gridline-color: #e2e8f0;
+    color: #0f172a;
+    font-size: 12px;
+}
+
+QTableWidget::item {
+    padding: 5px;
+}
+
+QTableWidget::item:selected {
+    background-color: #dbeafe;
+    color: #0f172a;
+}
+
+QHeaderView::section {
+    background-color: #1e3a8a;
+    color: white;
+    padding: 6px;
+    border: none;
+    font-weight: bold;
+}
+   ]]></string>
+  </property>
+
+  <layout class="QVBoxLayout" name="mainLayout">
+   <property name="leftMargin"><number>14</number></property>
+   <property name="topMargin"><number>10</number></property>
+   <property name="rightMargin"><number>14</number></property>
+   <property name="bottomMargin"><number>10</number></property>
+   <property name="spacing"><number>10</number></property>
+
+   <item>
+    <layout class="QHBoxLayout" name="summaryLayout">
+     <property name="spacing"><number>10</number></property>
+
+     <item>
+      <widget class="QFrame" name="summaryCard1">
+       <property name="maximumSize"><size><width>16777215</width><height>76</height></size></property>
+       <layout class="QVBoxLayout" name="summaryCard1Layout">
+        <property name="leftMargin"><number>12</number></property>
+        <property name="topMargin"><number>8</number></property>
+        <property name="rightMargin"><number>12</number></property>
+        <property name="bottomMargin"><number>8</number></property>
+        <item>
+         <widget class="QLabel" name="lblTotalInvoices">
+          <property name="text"><string>0</string></property>
+          <property name="class" stdset="0"><string>statNumber</string></property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="lblTotalInvoicesText">
+          <property name="text"><string>Tổng hóa đơn</string></property>
+          <property name="class" stdset="0"><string>statText</string></property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </item>
+
+     <item>
+      <widget class="QFrame" name="summaryCard2">
+       <property name="maximumSize"><size><width>16777215</width><height>76</height></size></property>
+       <layout class="QVBoxLayout" name="summaryCard2Layout">
+        <property name="leftMargin"><number>12</number></property>
+        <property name="topMargin"><number>8</number></property>
+        <property name="rightMargin"><number>12</number></property>
+        <property name="bottomMargin"><number>8</number></property>
+        <item>
+         <widget class="QLabel" name="lblTodayRevenue">
+          <property name="text"><string>0 đ</string></property>
+          <property name="class" stdset="0"><string>statNumber</string></property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="lblTodayRevenueText">
+          <property name="text"><string>Doanh thu hôm nay</string></property>
+          <property name="class" stdset="0"><string>statText</string></property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </item>
+
+     <item>
+      <widget class="QFrame" name="summaryCard3">
+       <property name="maximumSize"><size><width>16777215</width><height>76</height></size></property>
+       <layout class="QVBoxLayout" name="summaryCard3Layout">
+        <property name="leftMargin"><number>12</number></property>
+        <property name="topMargin"><number>8</number></property>
+        <property name="rightMargin"><number>12</number></property>
+        <property name="bottomMargin"><number>8</number></property>
+        <item>
+         <widget class="QLabel" name="lblMonthRevenue">
+          <property name="text"><string>0 đ</string></property>
+          <property name="class" stdset="0"><string>statNumber</string></property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="lblMonthRevenueText">
+          <property name="text"><string>Doanh thu tháng</string></property>
+          <property name="class" stdset="0"><string>statText</string></property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </item>
+
+     <item>
+      <widget class="QFrame" name="summaryCard4">
+       <property name="maximumSize"><size><width>16777215</width><height>76</height></size></property>
+       <layout class="QVBoxLayout" name="summaryCard4Layout">
+        <property name="leftMargin"><number>12</number></property>
+        <property name="topMargin"><number>8</number></property>
+        <property name="rightMargin"><number>12</number></property>
+        <property name="bottomMargin"><number>8</number></property>
+        <item>
+         <widget class="QLabel" name="lblCancelledInvoices">
+          <property name="text"><string>0</string></property>
+          <property name="class" stdset="0"><string>statNumber</string></property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="lblCancelledInvoicesText">
+          <property name="text"><string>Đơn hủy / hoàn</string></property>
+          <property name="class" stdset="0"><string>statText</string></property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </item>
+
+    </layout>
+   </item>
+
+   <item>
+    <widget class="QFrame" name="filterPanel">
+     <property name="maximumSize"><size><width>16777215</width><height>104</height></size></property>
+     <layout class="QVBoxLayout" name="filterPanelLayout">
+      <property name="leftMargin"><number>12</number></property>
+      <property name="topMargin"><number>10</number></property>
+      <property name="rightMargin"><number>12</number></property>
+      <property name="bottomMargin"><number>10</number></property>
+      <property name="spacing"><number>8</number></property>
+
+      <item>
+       <widget class="QLabel" name="lblFilterTitle">
+        <property name="text"><string>🔍 Bộ lọc hóa đơn</string></property>
+        <property name="class" stdset="0"><string>sectionTitle</string></property>
+       </widget>
+      </item>
+
+      <item>
+       <layout class="QHBoxLayout" name="filterLayout">
+        <property name="spacing"><number>8</number></property>
+
+        <item>
+         <widget class="QLineEdit" name="txtSearchInvoice">
+          <property name="minimumSize"><size><width>260</width><height>38</height></size></property>
+          <property name="placeholderText"><string>Tìm mã đơn, SĐT, khách hàng, IMEI...</string></property>
+         </widget>
+        </item>
+
+        <item>
+         <widget class="QComboBox" name="cboPaymentFilter">
+          <property name="minimumSize"><size><width>175</width><height>38</height></size></property>
+          <item><property name="text"><string>Tất cả thanh toán</string></property></item>
+          <item><property name="text"><string>Tiền mặt</string></property></item>
+          <item><property name="text"><string>QR chuyển khoản</string></property></item>
+         </widget>
+        </item>
+
+        <item>
+         <widget class="QComboBox" name="cboStatusFilter">
+          <property name="minimumSize"><size><width>165</width><height>38</height></size></property>
+          <item><property name="text"><string>Tất cả trạng thái</string></property></item>
+          <item><property name="text"><string>paid</string></property></item>
+          <item><property name="text"><string>cancelled</string></property></item>
+          <item><property name="text"><string>returned</string></property></item>
+         </widget>
+        </item>
+
+        <item>
+         <widget class="QDateEdit" name="dateFrom">
+          <property name="minimumSize"><size><width>135</width><height>38</height></size></property>
+          <property name="calendarPopup"><bool>true</bool></property>
+          <property name="displayFormat"><string>dd/MM/yyyy</string></property>
+         </widget>
+        </item>
+
+        <item>
+         <widget class="QDateEdit" name="dateTo">
+          <property name="minimumSize"><size><width>135</width><height>38</height></size></property>
+          <property name="calendarPopup"><bool>true</bool></property>
+          <property name="displayFormat"><string>dd/MM/yyyy</string></property>
+         </widget>
+        </item>
+
+        <item>
+         <widget class="QPushButton" name="btnSearch">
+          <property name="minimumSize"><size><width>82</width><height>38</height></size></property>
+          <property name="text"><string>🔍 Tìm</string></property>
+         </widget>
+        </item>
+
+        <item>
+         <widget class="QPushButton" name="btnClearFilter">
+          <property name="minimumSize"><size><width>92</width><height>38</height></size></property>
+          <property name="text"><string>🧹 Xóa lọc</string></property>
+         </widget>
+        </item>
+
+        <item>
+         <widget class="QPushButton" name="btnRefresh">
+          <property name="minimumSize"><size><width>82</width><height>38</height></size></property>
+          <property name="text"><string>🔄 Mới</string></property>
+         </widget>
+        </item>
+
+       </layout>
+      </item>
+
+     </layout>
+    </widget>
+   </item>
+
+   <item>
+    <layout class="QHBoxLayout" name="contentLayout">
+     <property name="spacing"><number>10</number></property>
+
+     <item>
+      <widget class="QFrame" name="invoicePanel">
+       <layout class="QVBoxLayout" name="invoicePanelLayout">
+        <property name="leftMargin"><number>12</number></property>
+        <property name="topMargin"><number>10</number></property>
+        <property name="rightMargin"><number>12</number></property>
+        <property name="bottomMargin"><number>10</number></property>
+        <property name="spacing"><number>8</number></property>
+
+        <item>
+         <layout class="QHBoxLayout" name="invoiceTitleLayout">
+          <item>
+           <widget class="QLabel" name="lblInvoiceListTitle">
+            <property name="text"><string>🧾 Danh sách hóa đơn</string></property>
+            <property name="class" stdset="0"><string>sectionTitle</string></property>
+           </widget>
+          </item>
+          <item>
+           <spacer name="invoiceTitleSpacer">
+            <property name="orientation"><enum>Qt::Orientation::Horizontal</enum></property>
+            <property name="sizeHint" stdset="0"><size><width>40</width><height>20</height></size></property>
+           </spacer>
+          </item>
+          <item>
+           <widget class="QPushButton" name="btnViewDetail">
+            <property name="minimumSize"><size><width>110</width><height>36</height></size></property>
+            <property name="text"><string>👁 Chi tiết</string></property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="btnReprintInvoice">
+            <property name="minimumSize"><size><width>120</width><height>36</height></size></property>
+            <property name="text"><string>🖨 In lại</string></property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+
+        <item>
+         <widget class="QTableWidget" name="tableInvoices">
+          <property name="minimumSize"><size><width>0</width><height>310</height></size></property>
+          <property name="columnCount"><number>10</number></property>
+          <column><property name="text"><string>Mã đơn</string></property></column>
+          <column><property name="text"><string>Ngày bán</string></property></column>
+          <column><property name="text"><string>Khách hàng</string></property></column>
+          <column><property name="text"><string>SĐT</string></property></column>
+          <column><property name="text"><string>Số máy</string></property></column>
+          <column><property name="text"><string>Tạm tính</string></property></column>
+          <column><property name="text"><string>Giảm</string></property></column>
+          <column><property name="text"><string>Tổng tiền</string></property></column>
+          <column><property name="text"><string>Thanh toán</string></property></column>
+          <column><property name="text"><string>Trạng thái</string></property></column>
+         </widget>
+        </item>
+
+       </layout>
+      </widget>
+     </item>
+
+     <item>
+      <widget class="QFrame" name="detailPanel">
+       <property name="minimumSize"><size><width>420</width><height>0</height></size></property>
+       <property name="maximumSize"><size><width>470</width><height>16777215</height></size></property>
+
+       <layout class="QVBoxLayout" name="detailPanelLayout">
+        <property name="leftMargin"><number>12</number></property>
+        <property name="topMargin"><number>10</number></property>
+        <property name="rightMargin"><number>12</number></property>
+        <property name="bottomMargin"><number>10</number></property>
+        <property name="spacing"><number>8</number></property>
+
+        <item>
+         <widget class="QLabel" name="lblDetailTitle">
+          <property name="text"><string>📄 Chi tiết hóa đơn</string></property>
+          <property name="class" stdset="0"><string>sectionTitle</string></property>
+         </widget>
+        </item>
+
+        <item>
+         <widget class="QFrame" name="detailInfoBox">
+          <layout class="QGridLayout" name="detailInfoLayout">
+           <property name="leftMargin"><number>12</number></property>
+           <property name="topMargin"><number>10</number></property>
+           <property name="rightMargin"><number>12</number></property>
+           <property name="bottomMargin"><number>10</number></property>
+           <property name="horizontalSpacing"><number>10</number></property>
+           <property name="verticalSpacing"><number>7</number></property>
+
+           <item row="0" column="0">
+            <widget class="QLabel" name="lblInvoiceIdText">
+             <property name="minimumSize"><size><width>82</width><height>0</height></size></property>
+             <property name="text"><string>Mã đơn:</string></property>
+             <property name="class" stdset="0"><string>formLabel</string></property>
+            </widget>
+           </item>
+           <item row="0" column="1">
+            <widget class="QLabel" name="lblInvoiceIdValue">
+             <property name="text"><string>#---</string></property>
+             <property name="class" stdset="0"><string>valueLabel</string></property>
+            </widget>
+           </item>
+
+           <item row="1" column="0">
+            <widget class="QLabel" name="lblCreatedAtText">
+             <property name="text"><string>Ngày bán:</string></property>
+             <property name="class" stdset="0"><string>formLabel</string></property>
+            </widget>
+           </item>
+           <item row="1" column="1">
+            <widget class="QLabel" name="lblCreatedAtValue">
+             <property name="text"><string>---</string></property>
+             <property name="class" stdset="0"><string>valueLabel</string></property>
+            </widget>
+           </item>
+
+           <item row="2" column="0">
+            <widget class="QLabel" name="lblCustomerText">
+             <property name="text"><string>Khách:</string></property>
+             <property name="class" stdset="0"><string>formLabel</string></property>
+            </widget>
+           </item>
+           <item row="2" column="1">
+            <widget class="QLabel" name="lblCustomerValue">
+             <property name="text"><string>---</string></property>
+             <property name="class" stdset="0"><string>valueLabel</string></property>
+            </widget>
+           </item>
+
+           <item row="3" column="0">
+            <widget class="QLabel" name="lblPhoneText">
+             <property name="text"><string>SĐT:</string></property>
+             <property name="class" stdset="0"><string>formLabel</string></property>
+            </widget>
+           </item>
+           <item row="3" column="1">
+            <widget class="QLabel" name="lblPhoneValue">
+             <property name="text"><string>---</string></property>
+             <property name="class" stdset="0"><string>valueLabel</string></property>
+            </widget>
+           </item>
+
+           <item row="4" column="0">
+            <widget class="QLabel" name="lblStaffText">
+             <property name="text"><string>Nhân viên:</string></property>
+             <property name="class" stdset="0"><string>formLabel</string></property>
+            </widget>
+           </item>
+           <item row="4" column="1">
+            <widget class="QLabel" name="lblStaffValue">
+             <property name="text"><string>---</string></property>
+             <property name="class" stdset="0"><string>valueLabel</string></property>
+            </widget>
+           </item>
+
+           <item row="5" column="0">
+            <widget class="QLabel" name="lblPaymentText">
+             <property name="text"><string>Thanh toán:</string></property>
+             <property name="class" stdset="0"><string>formLabel</string></property>
+            </widget>
+           </item>
+           <item row="5" column="1">
+            <widget class="QLabel" name="lblPaymentValue">
+             <property name="text"><string>---</string></property>
+             <property name="class" stdset="0"><string>valueLabel</string></property>
+            </widget>
+           </item>
+
+          </layout>
+         </widget>
+        </item>
+
+        <item>
+         <widget class="QTableWidget" name="tableInvoiceItems">
+          <property name="minimumSize"><size><width>0</width><height>160</height></size></property>
+          <property name="columnCount"><number>5</number></property>
+          <column><property name="text"><string>IMEI</string></property></column>
+          <column><property name="text"><string>Sản phẩm</string></property></column>
+          <column><property name="text"><string>DL</string></property></column>
+          <column><property name="text"><string>Màu</string></property></column>
+          <column><property name="text"><string>Giá</string></property></column>
+         </widget>
+        </item>
+
+        <item>
+         <widget class="QFrame" name="moneyBox">
+          <layout class="QGridLayout" name="moneyDetailLayout">
+           <property name="leftMargin"><number>12</number></property>
+           <property name="topMargin"><number>8</number></property>
+           <property name="rightMargin"><number>12</number></property>
+           <property name="bottomMargin"><number>8</number></property>
+           <property name="horizontalSpacing"><number>10</number></property>
+           <property name="verticalSpacing"><number>7</number></property>
+
+           <item row="0" column="0">
+            <widget class="QLabel" name="lblSubtotalText">
+             <property name="text"><string>Tạm tính:</string></property>
+             <property name="class" stdset="0"><string>formLabel</string></property>
+            </widget>
+           </item>
+           <item row="0" column="1">
+            <widget class="QLabel" name="lblSubtotalValue">
+             <property name="text"><string>0 đ</string></property>
+             <property name="class" stdset="0"><string>valueLabel</string></property>
+            </widget>
+           </item>
+
+           <item row="1" column="0">
+            <widget class="QLabel" name="lblDiscountText">
+             <property name="text"><string>Giảm giá:</string></property>
+             <property name="class" stdset="0"><string>formLabel</string></property>
+            </widget>
+           </item>
+           <item row="1" column="1">
+            <widget class="QLabel" name="lblDiscountValue">
+             <property name="text"><string>0 đ</string></property>
+             <property name="class" stdset="0"><string>valueLabel</string></property>
+            </widget>
+           </item>
+
+           <item row="2" column="0">
+            <widget class="QLabel" name="lblTotalText">
+             <property name="text"><string>Tổng tiền:</string></property>
+             <property name="styleSheet"><string>color: #1e3a8a; font-size: 15px; font-weight: bold;</string></property>
+            </widget>
+           </item>
+           <item row="2" column="1">
+            <widget class="QLabel" name="lblTotalValue">
+             <property name="text"><string>0 đ</string></property>
+             <property name="styleSheet"><string>color: #dc2626; font-size: 20px; font-weight: bold;</string></property>
+            </widget>
+           </item>
+
+          </layout>
+         </widget>
+        </item>
+
+        <item>
+         <layout class="QHBoxLayout" name="detailButtonLayout1">
+          <property name="spacing"><number>8</number></property>
+          <item>
+           <widget class="QPushButton" name="btnExportPdf">
+            <property name="minimumSize"><size><width>0</width><height>40</height></size></property>
+            <property name="text"><string>📄 Xuất PDF</string></property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="btnCancelInvoice">
+            <property name="minimumSize"><size><width>0</width><height>40</height></size></property>
+            <property name="text"><string>❌ Hủy đơn</string></property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+
+        <item>
+         <widget class="QPushButton" name="btnReturnItem">
+          <property name="minimumSize"><size><width>0</width><height>40</height></size></property>
+          <property name="text"><string>↩ Hoàn hàng / trả lại IMEI vào kho</string></property>
+         </widget>
+        </item>
+
+       </layout>
+      </widget>
+     </item>
+
+    </layout>
+   </item>
+
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
